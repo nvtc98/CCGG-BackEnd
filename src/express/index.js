@@ -18,10 +18,10 @@ const startServer = (port = defaultPort) => {
 	app.get('/', async (request, response) => {
 		console.log(`URL: ${request.url}`);
 
-		response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
-		setTimeout(() => {
-			response.send({ statusCode: '200', statusMsg: 'success',message:'2222' });
-		}, 1000);
+		// response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
+		// setTimeout(() => {
+		// 	response.send({ statusCode: '200', statusMsg: 'success',message:'2222' });
+		// }, 1000);
 		
 		setTimeout(() => {
 			response.send({ statusCode: '200', statusMsg: 'success',message:'333333' });
