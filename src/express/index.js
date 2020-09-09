@@ -19,6 +19,13 @@ const startServer = (port = defaultPort) => {
 		console.log(`URL: ${request.url}`);
 
 		response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
+		setTimeout(() => {
+			response.send({ statusCode: '200', statusMsg: 'success',message:'2222' });
+		}, 1000);
+		
+		setTimeout(() => {
+			response.send({ statusCode: '200', statusMsg: 'success',message:'333333' });
+		}, 2000);
 		
 		sendSonicRequest((result) => {
 			console.log(result);
