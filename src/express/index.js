@@ -15,10 +15,9 @@ const startServer = (port = defaultPort) => {
 
 	app.use(express.static('public'));
 
-	// app.use('/images', express.static(__dirname + '/Images'));
+	app.use('/images', express.static(__dirname + '/Images'));
 
 	app.get('/', async (request, response) => {
-		// console.log(__dirname,process.env.PORT);
 		console.log(`URL: ${request.url}`);
 
 		// response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
