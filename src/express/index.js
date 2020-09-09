@@ -22,10 +22,10 @@ const startServer = (port = defaultPort) => {
 
 		response.send({ statusCode: '200', statusMsg: 'success' });
 		
-		// sendSonicRequest((result) => {
-		// 	console.log(result);
-		// 	response.send({ statusCode: '200', statusMsg: 'success', data:result });
-		// });
+		sendSonicRequest((result) => {
+			console.log(result);
+			response.send({ statusCode: '200', statusMsg: 'success', data:result });
+		});
 
 		// const {sonicAccessId}=config;
 
