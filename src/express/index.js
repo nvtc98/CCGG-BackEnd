@@ -13,19 +13,19 @@ const startServer = (port = defaultPort) => {
 	// 	next();
 	// });
 
-	app.use(express.static('public'));
+	// app.use(express.static('public'));
 
-	app.use('/images', express.static(__dirname + '/Images'));
+	app.use('/asset', express.static(__basedir + '/src/assets'));
 
 	app.get('/', async (request, response) => {
 		console.log(`URL: ${request.url}`);
 
-		// response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
+		response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
 		
-		sendSonicRequest((result) => {
-			console.log(result);
-			response.send({ statusCode: '200', statusMsg: 'success', data:result.statusText, dir: __dirname, port:process.env.PORT });
-		});
+		// sendSonicRequest((result) => {
+		// 	console.log(result);
+		// 	response.send({ statusCode: '200', statusMsg: 'success', data:result.statusText, dir: __dirname, port:process.env.PORT });
+		// });
 
 		// const {sonicAccessId}=config;
 
