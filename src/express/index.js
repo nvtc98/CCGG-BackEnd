@@ -15,14 +15,17 @@ const startServer = (port = defaultPort) => {
 
 	app.use(express.static('public'));
 
+	// app.use('/images', express.static(__dirname + '/Images'));
+
 	app.get('/', async (request, response) => {
+		// console.log(__dirname,process.env.PORT);
 		console.log(`URL: ${request.url}`);
 
 		// response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
 		
 		sendSonicRequest((result) => {
 			console.log(result);
-			response.send({ statusCode: '200', statusMsg: 'success', data:result.statusText });
+			response.send({ statusCode: '200', statusMsg: 'success', data:result.statusText, dir: __dirname, port:process.env.PORT });
 		});
 
 		// const {sonicAccessId}=config;
