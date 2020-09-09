@@ -20,7 +20,8 @@
   "homepage": "https://github.com/nvtc98/CCGG-BackEnd#readme",
   "dependencies": {
     "axios": "^0.20.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "youtube-mp3-downloader": "^0.7.3"
   },
   "devDependencies": {
     "eslint": "^7.8.1",

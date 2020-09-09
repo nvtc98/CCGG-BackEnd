@@ -1,7 +1,9 @@
 
 const express = require('express');
-const axios = require('axios');
 const config = require('../../config.json');
+const youtubeDownload = require('../youtubeDownloader');
+const { sendSonicRequest } = require('../sonicAPI');
+const axios =require('axios');
 
 const defaultPort = 5000;
 const app = express();
@@ -16,27 +18,35 @@ const startServer = (port = defaultPort) => {
 	app.get('/', async (request, response) => {
 		console.log(`URL: ${request.url}`);
 
-
-		console.log(config);
-		// let student = JSON.parse(config);
-		// console.log(student);
-
-		var accessId = 'ebb5f84a-37dd-4c5a-996b-e84a3b816cd3';
-		var taskUrl = 'analyze/chords';
-		var parameters = { blocking: false, format: 'json', access_id: accessId };
-
-		// the values for these parameters were taken from the corresponding controls in the demo form
-		parameters['input_file'] = 'http://www.sonicAPI.com/music/brown_eyes_by_ueberschall.mp3';
-
-		const result = await axios.get('https://api.sonicAPI.com/' + taskUrl, {
-			params: {
-				...parameters
-			}
-		});
-		console.log('result', result);
-
-
 		response.send({ statusCode: '200', statusMsg: 'success' });
+		
+		sendSonicRequest((result) => {
+			console.log(result);
+		});
+
+		// const {sonicAccessId}=config;
+
+		// console.log(config);
+
+		// // youtubeDownload();
+
+		// var accessId = sonicAccessId;
+		// var taskUrl = 'analyze/chords';
+		// var parameters = { blocking: false, format: 'json', access_id: accessId };
+
+		// // the values for these parameters were taken from the corresponding controls in the demo form
+		// // parameters['input_file'] = 'http://www.sonicAPI.com/music/brown_eyes_by_ueberschall.mp3';
+		// parameters['input_file'] = 'https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3';
+
+		// console.log('start connecting api', parameters);
+		// const result = await axios.get('https://api.sonicAPI.com/' + taskUrl, {
+		// 	params: {
+		// 		...parameters
+		// 	}
+		// });
+		// console.log('result', result);
+
+
 	});
 
 	app.get('/chatbot', (request, response) => {
