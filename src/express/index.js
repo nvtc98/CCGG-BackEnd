@@ -18,10 +18,11 @@ const startServer = (port = defaultPort) => {
 	app.get('/', async (request, response) => {
 		console.log(`URL: ${request.url}`);
 
-		response.send({ statusCode: '200', statusMsg: 'success' });
+		// response.send({ statusCode: '200', statusMsg: 'success' });
 		
 		sendSonicRequest((result) => {
 			console.log(result);
+			response.send({ statusCode: '200', statusMsg: 'success', data:result });
 		});
 
 		// const {sonicAccessId}=config;
