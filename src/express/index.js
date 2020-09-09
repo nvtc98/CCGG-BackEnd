@@ -9,21 +9,23 @@ const defaultPort = 5000;
 const app = express();
 
 const startServer = (port = defaultPort) => {
-	app.use(function (req, res, next) {
-		res.header('Access-Control-Allow-Origin', '*');
-		res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-		next();
-	});
+	// app.use(function (req, res, next) {
+	// 	res.header('Access-Control-Allow-Origin', '*');
+	// 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	// 	next();
+	// });
+
+	app.use(express.static('public'));
 
 	app.get('/', async (request, response) => {
 		console.log(`URL: ${request.url}`);
 
-		// response.send({ statusCode: '200', statusMsg: 'success' });
+		response.send({ statusCode: '200', statusMsg: 'success' });
 		
-		sendSonicRequest((result) => {
-			console.log(result);
-			response.send({ statusCode: '200', statusMsg: 'success', data:result });
-		});
+		// sendSonicRequest((result) => {
+		// 	console.log(result);
+		// 	response.send({ statusCode: '200', statusMsg: 'success', data:result });
+		// });
 
 		// const {sonicAccessId}=config;
 
@@ -64,7 +66,7 @@ const startServer = (port = defaultPort) => {
 		// });
 	});
 
-	const server = app.listen(port, (error) => {
+	const server = app.listen(process.env.PORT||port, (error) => {
 		if (error) return console.log(`Error: ${error}`);
 		console.log(`Server is now ready. Open on browser: http://localhost:${server.address().port}/`);
 	});
