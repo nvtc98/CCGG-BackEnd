@@ -1,9 +1,7 @@
 
 const express = require('express');
-const config = require('../../config.json');
-const youtubeDownload = require('../youtubeDownloader');
+// const youtubeDownload = require('../youtubeDownloader');
 const { sendSonicRequest } = require('../sonicAPI');
-const axios =require('axios');
 
 const defaultPort = 5000;
 const app = express();
