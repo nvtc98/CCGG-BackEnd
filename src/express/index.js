@@ -1,5 +1,6 @@
 
 const express = require('express');
+const axios= require('axios');
 // const youtubeDownload = require('../youtubeDownloader');
 const { sendSonicRequest } = require('../sonicAPI');
 
@@ -22,10 +23,24 @@ const startServer = (port = defaultPort) => {
 
 		// response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
 
-		sendSonicRequest((result) => {
-			console.log(result);
-			response.send({ statusCode: '200', statusMsg: 'success', data: result.statusText, dir: __dirname, port: process.env.PORT });
-		});
+		// sendSonicRequest((result) => {
+		// 	console.log(result);
+		// 	response.send({ statusCode: '200', statusMsg: 'success', data: result.statusText, dir: __dirname, port: process.env.PORT });
+		// });
+
+
+		if(!request.query) 
+			response.send({ statusCode: '200', statusMsg: 'success' });
+		console.log(request.query.data);
+		
+		axios.get(request.query.data).then((res)=>{
+			console.log('res',res);
+			try{response.send(
+				JSON.parse(res));}
+			catch(e)
+			{
+				response.send({msg:'ok but cannot parse'});	
+			}});
 
 		// const {sonicAccessId}=config;
 
