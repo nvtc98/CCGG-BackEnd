@@ -20,12 +20,12 @@ const startServer = (port = defaultPort) => {
 	app.get('/', async (request, response) => {
 		console.log(`URL: ${request.url}`);
 
-		response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
-		
-		// sendSonicRequest((result) => {
-		// 	console.log(result);
-		// 	response.send({ statusCode: '200', statusMsg: 'success', data:result.statusText, dir: __dirname, port:process.env.PORT });
-		// });
+		// response.send({ statusCode: '200', statusMsg: 'success',message:'hello' });
+
+		sendSonicRequest((result) => {
+			console.log(result);
+			response.send({ statusCode: '200', statusMsg: 'success', data: result.statusText, dir: __dirname, port: process.env.PORT });
+		});
 
 		// const {sonicAccessId}=config;
 
@@ -66,7 +66,7 @@ const startServer = (port = defaultPort) => {
 		// });
 	});
 
-	const server = app.listen(process.env.PORT||port, (error) => {
+	const server = app.listen(process.env.PORT || port, (error) => {
 		if (error) return console.log(`Error: ${error}`);
 		console.log(`Server is now ready. Open on browser: http://localhost:${server.address().port}/`);
 	});
