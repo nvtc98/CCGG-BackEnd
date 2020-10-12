@@ -35,22 +35,11 @@ const startServer = (port = defaultPort) => {
 		
 		axios.get(request.query.data).then((res)=>{
 			console.log('res',res);
-			try{
-				response.send(res.data);
-			}
+			try{response.send(
+				JSON.parse(res));}
 			catch(e)
 			{
-				response.send(`<!DOCTYPE html>
-				<html>
-				<body>
-				
-				<h1>My First Heading</h1>
-				
-				<p>My first paragraph.</p>
-				
-				</body>
-				</html>
-				`);	
+				response.send({msg:'ok but cannot parse'});	
 			}});
 
 		// const {sonicAccessId}=config;
